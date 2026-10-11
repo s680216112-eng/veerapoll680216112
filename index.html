@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>โปรแกรมดูดวงชะตา - ตำราพรหมชาติ</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Tahoma", "Arial", sans-serif;
+    background: linear-gradient(135deg, #fff8e7, #f5e4bd, #fffdf7);
+    min-height: 100vh;
+    color: #4b2e16;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.container {
+    width: 900px;
+    max-width: 94%;
+    margin: 30px auto;
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(100, 60, 10, 0.25);
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    background: linear-gradient(135deg, #7b4b16, #b8860b, #e0b84f);
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+.header h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 16px;
+}
+
+/* =========================
+   IMAGE
+========================= */
+.image-box {
+    background: #fffdf8;
+    text-align: center;
+    padding: 25px 20px 15px;
+}
+
+.image-box img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+/* =========================
+   CONTENT
+========================= */
+.content {
+    padding: 30px 40px 40px;
+}
+
+/* =========================
+   FORM
+========================= */
+.form-box {
+    background: linear-gradient(135deg, #fffaf0, #fff4d6);
+    border: 2px solid #e3c16f;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #805500;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #5b3a16;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 2px solid #d8bd7b;
+    border-radius: 10px;
+    font-size: 17px;
+    background: white;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #b8860b;
+    box-shadow: 0 0 8px rgba(184,134,11,0.25);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.calculate-btn {
+    background: linear-gradient(135deg, #8b5a16, #d4a72c);
+    color: white;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(100,60,10,0.25);
+}
+
+.reset-btn {
+    background: #e5e5e5;
+    color: #444;
+}
+
+.reset-btn:hover {
+    background: #d2d2d2;
+}
+
+/* =========================
+   RESULT
+========================= */
+.result {
+    display: none;
+    background: #fffdf5;
+    border: 3px solid #d3a62a;
+    border-radius: 18px;
+    padding: 28px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-title {
+    text-align: center;
+    color: #805500;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.info {
+    background: #fff6dc;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.base-name {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: #a66a00;
+    padding: 18px;
+    background: linear-gradient(135deg, #fff1bd, #fff9e5);
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.prediction {
+    line-height: 1.9;
+    font-size: 17px;
+    text-align: justify;
+    color: #3f3020;
+}
+
+.prediction strong {
+    color: #8b5a16;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    text-align: center;
+    padding: 18px;
+    background: #f6ead0;
+    color: #76562d;
+    font-size: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+
+    .container {
+        margin: 10px auto;
+        max-width: 96%;
+    }
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .form-box {
+        padding: 18px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .base-name {
+        font-size: 25px;
+    }
+
+    .prediction {
+        font-size: 16px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <div class="header">
+        <h1>ตำราพรหมชาติ </h1>
+        <p>วิธีนับอายุเพื่อดูดวงชะตารายปี</p>
+
+<p>สำหรับผู้ชาย: ให้นับปีที่ 1 เริ่มจากช่อง "เจดีย์" แล้วเวียนไปทางขวา (ตามเข็มนาฬิกา) จนครบจำนวนอายุปัจจุบัน </p>
+
+<p>สำหรับผู้หญิง: ให้นับปีที่ 1 เริ่มจากช่อง "เจดีย์" แล้วเวียนไปทางซ้าย (ทวนเข็มนาฬิกา) จนครบจำนวนอายุปัจจุบัน</p>
+    </div>
+
+
+    <!-- =========================
+         IMAGE ด้านบนสุด
+    ========================== -->
+    <div class="image-box">
+
+        <img  src="1-(3)-copy (1).jpg"
+             alt="ตำราพรหมชาติ 12 ฐาน">
+
+    </div>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+    <div class="content">
+
+        <!-- FORM -->
+        <div class="form-box">
+
+            <div class="form-title">
+                ✨ กรอกข้อมูลเพื่อดูคำทำนาย ✨
+            </div>
+
+            <div class="form-group">
+
+                <label for="age">
+                    อายุ
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    min="1"
+                    max="120"
+                    placeholder="กรุณากรอกอายุ เช่น 30"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="gender">
+                    เพศ
+                </label>
+
+                <select id="gender">
+
+                    <option value="">
+                        -- กรุณาเลือกเพศ --
+                    </option>
+
+                    <option value="male">
+                        ชาย
+                    </option>
+
+                    <option value="female">
+                        หญิง
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="button-group">
+
+                <button
+                    class="calculate-btn"
+                    onclick="calculateFortune()">
+
+                    🔮 ดูคำทำนาย
+
+                </button>
+
+                <button
+                    class="reset-btn"
+                    onclick="resetForm()">
+
+                    ↩ ล้างข้อมูล
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             RESULT
+        ========================== -->
+
+        <div id="result" class="result">
+
+            <div class="result-title">
+                📜 ผลการพยากรณ์
+            </div>
+
+            <div class="info">
+
+                <b>อายุ:</b>
+                <span id="showAge"></span>
+                ปี
+
+                <br>
+
+                <b>เพศ:</b>
+                <span id="showGender"></span>
+
+                <br>
+
+                <b>วิธีนับ:</b>
+                <span id="showDirection"></span>
+
+            </div>
+
+
+            <div class="base-name">
+
+                ฐานที่ตกคือ
+                <br>
+
+                <span id="baseName"></span>
+
+            </div>
+
+
+            <div class="prediction">
+
+                <strong>คำพยากรณ์:</strong>
+
+                <span id="predictionText"></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <div class="footer">
+
+        โปรแกรมดูดวงชะตาตามตำราพรหมชาติ 12 ฐาน
+        <br>
+        จัดทำเพื่อการศึกษาและความบันเทิง
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   ข้อมูลฐานดวงชะตา 12 ฐาน
+
+   ลำดับเริ่มจาก "เจดีย์"
+   ชาย  = เดินไปทางขวา / ตามเข็มนาฬิกา
+   หญิง = เดินไปทางซ้าย / ทวนเข็มนาฬิกา
+================================================== */
+
+const bases = [
+
+    {
+        name: "เจดีย์",
+        prediction:
+        "ปีนี้ดวงชะตาดำเนินไปด้วยความร่มเย็นเป็นสุข สภาพจิตใจปลอดโปร่ง มีโอกาสได้สร้างบุญกุศลและความดีงาม สิ่งที่มุ่งหวังหรือตั้งใจไว้มีเกณฑ์จะสมปรารถนาทุกประการ"
+    },
+
+    {
+        name: "ฉัตรเงิน",
+        prediction:
+        "เป็นช่วงเวลาแห่งความราบรื่นและโชคลาภ มีความคล่องตัวทางการเงิน ได้รับการสนับสนุนจากผู้หลักผู้ใหญ่ หากรับราชการหรือประกอบธุรกิจค้าขายจะมีอัตราการเจริญเติบโตที่เด่นชัด"
+    },
+
+    {
+        name: "คนคอขาด",
+        prediction:
+        "ถือเป็นเกณฑ์ชะตาที่ต้องใช้ความระมัดระวังเป็นพิเศษ อาจประสบกับปัญหาความเดือดร้อน ร้อนใจอันเกิดจากผู้อื่น รวมถึงมีความเสี่ยงต่อการสูญเสียทรัพย์สินเงินทองโดยไม่จำเป็น"
+    },
+
+    {
+        name: "เรือนหลวง",
+        prediction:
+        "ดวงชะตาอยู่ในขาขึ้น กิจการงานและการดำเนินชีวิตมีความเจริญก้าวหน้าอย่างมั่นคง ได้รับลาภผลเงินทอง มีผู้อุปถัมภ์ค้ำชูอย่างดียิ่ง และอุปสรรคศัตรูจะแพ้ภัยไปเอง"
+    },
+
+    {
+        name: "ปราสาททอง",
+        prediction:
+        "ผู้ที่ยังโสดมีเกณฑ์ได้พบเจอคู่ครอง ชีวิตโดยรวมมีความเจริญรุ่งเรือง การลงทุนหรือการค้าขายให้ผลกำไรเป็นที่น่าพึงพอใจ ได้รับความสำเร็จในสิ่งที่มุ่งหวัง"
+    },
+
+    {
+        name: "ราหู",
+        prediction:
+        "ระยะนี้ต้องตั้งสติและรอบคอบเป็นพิเศษ มีเกณฑ์ความกังวลใจจากปัญหาของผู้อื่น เสียทรัพย์สินโดยใช่เหตุ มักเกิดข้อพิพาทหรือความขัดแย้งกับคนรอบข้าง รวมถึงต้องระวังปัญหาสุขภาพ"
+    },
+
+    {
+        name: "ฉัตรทอง",
+        prediction:
+        "เป็นปีที่โดดเด่นด้วยโชคลาภและความมั่งคั่ง เพียบพร้อมด้วยทรัพย์สินเกียรติยศ และมิตรที่ดี มีผู้ใหญ่ให้ความเมตตาช่วยเหลือ ชีวิตมีความสุขความเจริญก้าวหน้า"
+    },
+
+    {
+        name: "เทวดาขี่เต่า",
+        prediction:
+        "ดำเนินชีวิตด้วยความพอประมาณ การเงินอยู่ในเกณฑ์พอมีพอกิน การกระทำกิจการใดๆ จำต้องใช้ความรอบคอบและวิจารณญาณอย่างสูง มิฉะนั้นอาจเกิดข้อผิดพลาดและความเดือดร้อนตามมา"
+    },
+
+    {
+        name: "คนต้องขื่อคา",
+        prediction:
+        "เกณฑ์ชะตาอยู่ในภาวะไม่สู้ดี ควรระมัดระวังปัญหาจากญาติมิตร ความสัมพันธ์กับคนใกล้ชิดมีความเปราะบาง หลีกเลี่ยงการเดินทางไกล และควรหาเวลาปฏิบัติธรรมหรือทำบุญสะเดาะเคราะห์"
+    },
+
+    {
+        name: "พ่อหมอ",
+        prediction:
+        "เป็นปีที่ได้รับเกียรติยศชื่อเสียง มีผู้ใหญ่อุปถัมภ์ค้ำชูอย่างดียิ่ง ชีวิตมีความเจริญก้าวหน้าและได้รับผลตอบแทนที่เป็นที่น่าพึงพอใจ ปราศจากภยันตรายใดๆ มากล้ำกราย"
+    },
+
+    {
+        name: "แม่มด",
+        prediction:
+        "ได้รับการสนับสนุนจากผู้บังคับบัญชาหรือผู้มีอำนาจ คำพูดและการเจรจาสร้างความน่าเชื่อถือ เป็นที่รักใคร่ของคนรอบข้าง มีโชคลาภเข้ามาบ้างตามสมควร แต่อาจต้องใช้พลังกายและพลังใจในการปฏิบัติงานค่อนข้างมาก"
+    },
+
+    {
+        name: "นาคราช",
+        prediction:
+        "ถือเป็นเกณฑ์ที่ต้องระมัดระวังภัยอันตรายอย่างเคร่งครัด มีความเสี่ยงด้านสุขภาพ การเจ็บไข้ได้ป่วย หรืออุบัติเหตุจากของมีคมและสัตว์มีพิษ แนะนำให้งดการเบียดเบียนชีวิตสัตว์และหมั่นบำเพ็ญกุศลเพื่อบรรเทาวิเคราะห์กรรม"
+    }
+
+];
+
+
+/* ==================================================
+   FUNCTION คำนวณดวง
+================================================== */
+
+function calculateFortune() {
+
+    // รับค่าอายุ
+    const ageInput = document.getElementById("age").value;
+
+    // รับค่าเพศ
+    const gender = document.getElementById("gender").value;
+
+
+    /* ตรวจสอบข้อมูล */
+    if (ageInput === "") {
+
+        alert("กรุณากรอกอายุ");
+
+        return;
+    }
+
+
+    if (gender === "") {
+
+        alert("กรุณาเลือกเพศ");
+
+        return;
+    }
+
+
+    const age = parseInt(ageInput);
+
+
+    if (age < 1 || age > 120) {
+
+        alert("กรุณากรอกอายุระหว่าง 1 - 120 ปี");
+
+        return;
+    }
+
+
+    /* ==================================================
+       การคำนวณ
+
+       อายุ 1 = เจดีย์
+       
+       ชาย:
+       เจดีย์ -> ฉัตรเงิน -> คนคอขาด ...
+       คือ + ไปตามลำดับ
+
+       หญิง:
+       เจดีย์ -> นาคราช -> แม่มด ...
+       คือ - ไปตามลำดับ
+    ================================================== */
+
+    let index;
+
+
+    if (gender === "male") {
+
+        // ผู้ชาย นับไปทางขวา
+        index = (age - 1) % 12;
+
+    } else {
+
+        // ผู้หญิง นับไปทางซ้าย
+        index = (12 - ((age - 1) % 12)) % 12;
+
+    }
+
+
+    /* ข้อมูลฐานที่ได้ */
+
+    const fortune = bases[index];
+
+
+    /* แสดงข้อมูล */
+
+    document.getElementById("showAge").textContent = age;
+
+    document.getElementById("showGender").textContent =
+        gender === "male" ? "ชาย" : "หญิง";
+
+
+    document.getElementById("showDirection").textContent =
+        gender === "male"
+        ? "นับจากเจดีย์ไปทางขวา (ตามเข็มนาฬิกา)"
+        : "นับจากเจดีย์ไปทางซ้าย (ทวนเข็มนาฬิกา)";
+
+
+    document.getElementById("baseName").textContent =
+        fortune.name;
+
+
+    document.getElementById("predictionText").textContent =
+        fortune.prediction;
+
+
+    /* แสดงผล */
+
+    document.getElementById("result").style.display = "block";
+
+
+    /* เลื่อนหน้าจอลงมาที่ผลลัพธ์ */
+
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+/* ==================================================
+   FUNCTION ล้างข้อมูล
+================================================== */
+
+function resetForm() {
+
+    document.getElementById("age").value = "";
+
+    document.getElementById("gender").value = "";
+
+    document.getElementById("result").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
